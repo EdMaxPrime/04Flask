@@ -4,22 +4,21 @@ my_app = Flask(__name__)
 
 def makeHuge(text):
     return '<span style="font-size:78px;">'+text+'</span>'
-def makeLink(text, active):
-    if active == True:
-        return '<a href="'+text+'">'+text+'</a>' + ('&nbsp;'*10)
-    return '<u>'+text+'</u>' + ('&nbsp;' * 10)
+def makeLink(text):
+    return '<a href="'+text+'">'+text+'</a>' + ('&nbsp;'*10)
+header = "Go to: " + ('&nbsp;'*10) + makeLink('/') + makeLink('/cool') + makeLink('/funny') + '<br>'
 
 @my_app.route('/') #127.0.0.1:5000
 def home():
-    return "Go to: " + makeLink("/", False) + makeLink("cool", True) + makeLink("funny", True) + "<br>" + makeHuge(":-)")
+    return header + makeHuge(":-)")
 
 @my_app.route('/cool')
 def cool():
-    return "Go to: " + makeLink('/', True) + makeLink('cool', False) + makeLink('funny', True) + "<br>" + makeHuge("B-)")
+    return header + makeHuge("B-)")
 
 @my_app.route('/funny')
 def funny():
-    return "Go to: " + makeLink('/', True) + makeLink('cool', True) + makeLink('funny', False) + "<br>" + makeHuge("xD")
+    return header + makeHuge("xD")
 
 
 if __name__ == '__main__':
