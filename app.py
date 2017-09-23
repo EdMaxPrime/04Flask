@@ -2,7 +2,7 @@ from flask import Flask
 
 my_app = Flask(__name__)
 
-@my_app.roate('/') #127.0.0.1:5000
+@my_app.route('/') #127.0.0.1:5000
 def home():
     return "hello"
 
